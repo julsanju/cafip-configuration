@@ -54,7 +54,7 @@
 									"maximumError": "8kB"
 								}
 							],
-							"outputHashing": "all",
+							"outputHashing": "all"
 						},
 						"development": {
 							"optimization": false,
@@ -75,7 +75,7 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "cafip-configuration:build:production",
+							"buildTarget": "cafip-configuration:build:production"
 						},
 						"development": {
 							"buildTarget": "cafip-configuration:build:development"
@@ -87,7 +87,7 @@
 					"defaultConfiguration": "development",
 					"options": {
 						"port": 4201,
-						"publicHost": "http://localhost:4201",
+						"publicHost": "http://localhost:4201"
 					}
 				},
 				"extract-i18n": {
