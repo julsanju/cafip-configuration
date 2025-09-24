@@ -1,0 +1,97 @@
+.config-grid {
+  /* Ajustes responsivos finos más allá de clases utilitarias */
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.config-grid button {
+  position: relative;
+  isolation: isolate;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.config-grid button:focus-visible {
+  outline: 2px solid #3b82f6;
+  /* blue-500 */
+  outline-offset: 2px;
+}
+
+.config-grid button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Íconos: tamaño y color coherente con el diseño de referencia */
+.config-grid svg {
+  width: 72px;
+  height: 72px;
+  color: #1d4ed8;
+  /* blue-700 */
+}
+
+.config-grid svg path {
+  fill: currentColor;
+}
+
+/* Tipografía y espaciado */
+.config-grid p.font-semibold {
+  font-size: 0.975rem;
+  line-height: 1.25rem;
+  color: #111827;
+  /* gray-900 */
+}
+
+.config-grid p.text-xs {
+  margin-top: 0.25rem;
+  color: #6b7280;
+  /* gray-500 */
+}
+
+/* Fondo sutil al hacer hover con borde azul suave */
+.config-grid button:hover,
+.config-grid button:focus-visible {
+  background-color: #f8fafc;
+  /* slate-50 */
+  border-color: #60a5fa;
+  /* blue-400 */
+}
+
+/* Responsive extra fino */
+@media (max-width: 1024px) {
+  .config-grid svg {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .config-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .config-grid svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .config-grid button {
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .config-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .config-grid svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .config-grid p.text-xs {
+    font-size: 0.7rem;
+  }
+}

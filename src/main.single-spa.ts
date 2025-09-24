@@ -27,8 +27,7 @@ const lifecycles = singleSpaAngular({
         // Nota: mantener las rutas internas del micro sin cambiar el URL global
         // Usamos solo ruta vacía para evitar replaceState en el navegador
         provideRouter([
-          { path: '', loadComponent: () => import('./app/configuration/configuration.component').then(m => m.ConfigurationComponent) },
-          { path: '**', redirectTo: '' },
+          
         ], withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })),
       ],
     });
@@ -95,8 +94,7 @@ if (typeof window !== 'undefined' && !(window as any).singleSpaNavigate) {
         providers: [
           ...getSingleSpaExtraProviders(),
           provideRouter([
-            { path: '', loadComponent: () => import('./app/configuration/configuration.component').then(m => m.ConfigurationComponent) },
-            { path: '**', redirectTo: '' },
+           
           ], withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })),
         ],
       });

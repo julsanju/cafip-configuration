@@ -1,60 +1,103 @@
-# CafipConfiguration
+# CAFIP Configuration
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+Sistema de configuración para CAFIP (Catálogo de Entidades) desarrollado con Angular 20.
 
-## Development server
+## Descripción
 
-To start a local development server, run:
+Este proyecto es una aplicación Angular que proporciona funcionalidades de configuración para el sistema CAFIP. La aplicación está diseñada para funcionar tanto como una aplicación standalone como un microfrontend usando Single-SPA.
 
-```bash
-ng serve
-```
+## Cómo Ejecutar
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Desarrollo Local
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para ejecutar la aplicación en modo desarrollo:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+La aplicación estará disponible en `http://localhost:4200`
+
+### Modo Single-SPA
+
+Para ejecutar como microfrontend con Single-SPA:
 
 ```bash
-ng generate --help
+npm run start:single-spa
 ```
 
-## Building
+### Servir con Single-SPA
 
-To build the project run:
+Para construir y servir la aplicación como microfrontend:
 
 ```bash
-ng build
+npm run serve:single-spa
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+La aplicación estará disponible en `http://localhost:4201`
 
-## Running unit tests
+### Modo Watch con Single-SPA
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para desarrollo continuo con Single-SPA:
 
 ```bash
-ng test
+npm run serve:single-spa:watch
 ```
 
-## Running end-to-end tests
+## Cómo Probar
 
-For end-to-end (e2e) testing, run:
+Para ejecutar las pruebas unitarias:
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Esto ejecutará las pruebas usando Karma y Jasmine.
 
-## Additional Resources
+## Construcción
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# cafip-configuration
+### Construcción Estándar
+
+```bash
+npm run build
+```
+
+### Construcción para Single-SPA
+
+```bash
+npm run build:single-spa
+```
+
+## Tecnologías Utilizadas
+
+- **Angular 20**: Framework principal
+- **TypeScript**: Lenguaje de programación
+- **Tailwind CSS**: Framework de estilos
+- **Single-SPA**: Para arquitectura de microfrontends
+- **Karma & Jasmine**: Para testing
+- **Express**: Para SSR (Server-Side Rendering)
+
+## Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── core/           # Servicios y modelos centrales
+│   ├── features/       # Módulos de funcionalidades
+│   │   └── configurations/  # Módulo de configuraciones
+│   └── shared/         # Componentes y utilidades compartidas
+├── bootstrap.ts        # Punto de entrada principal
+└── main.single-spa.ts  # Punto de entrada para Single-SPA
+```
+
+## Requisitos
+
+- Node.js (versión 18 o superior)
+- npm o yarn
+- Angular CLI
+
+## Instalación
+
+```bash
+npm install
+```
