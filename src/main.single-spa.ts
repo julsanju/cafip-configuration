@@ -2,8 +2,10 @@ import { enableProdMode, NgZone } from '@angular/core';
 import { singleSpaAngular, getSingleSpaExtraProviders } from 'single-spa-angular';
 import { Router } from '@angular/router';
 import { App } from './app/app';
+import { platformBrowser } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
 
-// Nota: este micro expondrá un componente standalone. No hay módulo raíz.
+// Microfrontend Angular standalone con componente raíz App y enrutamiento provisto en appConfig.
 
 const lifecycles = singleSpaAngular({
   bootstrapFunction: async () => {

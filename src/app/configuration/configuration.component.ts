@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfigurationService, CafipConfiguration } from './configuration.service';
@@ -8,37 +8,49 @@ import { ConfigurationService, CafipConfiguration } from './configuration.servic
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent implements OnInit, OnDestroy {
-  config: CafipConfiguration | null = null;
-  private destroy$ = new Subject<void>();
+  private readonly fb = inject(FormBuilder);
+  private readonly configurationService = inject(ConfigurationService);
+  private readonly destroy$ = new Subject<void>();
 
-  constructor(private configurationService: ConfigurationService) {}
+  configForm!: FormGroup;
+  configData: CafipConfiguration | null = null;
 
   ngOnInit(): void {
-    // Cargar configuración desde localStorage al inicializar
     this.configurationService.loadFromLocalStorage();
-    
-    // Suscribirse a cambios de configuración
+
     this.configurationService.getConfiguration$()
       .pipe(takeUntil(this.destroy$))
       .subscribe(config => {
-        this.config = config;
+        this.configData = config;
+        this.initForm(config);
       });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  private initForm(config: CafipConfiguration): void {
+    this.configForm = this.fb.group({
+      appName: [config.appName],
+      apiUrl: [config.apiUrl],
+      version: [config.version],
+      features: this.fb.group({
+        darkMode: [config.features.darkMode],
+        notifications: [config.features.notifications],
+        analytics: [config.features.analytics]
+      }),
+      theme: this.fb.group({
+        primaryColor: [config.theme.primaryColor],
+        secondaryColor: [config.theme.secondaryColor],
+        fontFamily: [config.theme.fontFamily]
+      })
+    });
 
-  updateConfig(): void {
-    if (this.config) {
-      this.configurationService.updateConfiguration(this.config);
-    }
+    this.configForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(value => this.configurationService.updateConfiguration(value));
   }
 
   resetToDefault(): void {
@@ -46,10 +58,10 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   }
 
   exportConfiguration(): void {
-    if (this.config) {
-      const dataStr = JSON.stringify(this.config, null, 2);
+    if (this.configData) {
+      const dataStr = JSON.stringify(this.configForm.value, null, 2);
       const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      
+
       const link = document.createElement('a');
       link.href = URL.createObjectURL(dataBlob);
       link.download = 'cafip-configuration.json';
@@ -58,6 +70,11 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   }
 
   getConfigJson(): string {
-    return this.config ? JSON.stringify(this.config, null, 2) : '{}';
+    return this.configForm?.value ? JSON.stringify(this.configForm.value, null, 2) : '{}';
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
