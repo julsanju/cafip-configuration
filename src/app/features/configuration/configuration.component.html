@@ -12,11 +12,11 @@
     </div>
 
     @if (!childActive) {
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 config-grid">
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 config-grid ">
       @if (("Catálogo de entidades".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
         <button [routerLink]="['/entidades']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
-        <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+        <div class="flex flex-col items-center gap-4 ">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm80-80h280v-80H280v80Zm0-160h400v-80H280v80Zm0-160h400v-80H280v80Zm200-190q13 0 21.5-8.5T510-820q0-13-8.5-21.5T480-850q-13 0-21.5 8.5T450-820q0 13 8.5 21.5T480-790ZM200-200v-560 560Z" />
           </svg>
           <div class="text-center">
@@ -29,7 +29,7 @@
       @if (("Catálogo de bienes y servicios".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
         <button [routerLink]="['/bienes-servicios']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="m352-522 86-87-56-57-44 44-56-56 43-44-45-45-87 87 159 158Zm328 329 87-87-45-45-44 43-56-56 43-44-57-56-86 86 158 159Zm24-567 57 57-57-57ZM290-120H120v-170l175-175L80-680l200-200 216 216 151-152q12-12 27-18t31-6q16 0 31 6t27 18l53 54q12 12 18 27t6 31q0 16-6 30.5T816-647L665-495l215 215L680-80 465-295 290-120Zm-90-80h56l392-391-57-57-391 392v56Zm420-419-29-29 57 57-28-28Z" />
           </svg>
           <div class="text-center">
@@ -42,7 +42,7 @@
       @if (("Catálogo de presupuesto".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/presupuesto']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M640-520q17 0 28.5-11.5T680-560q0-17-11.5-28.5T640-600q-17 0-28.5 11.5T600-560q0 17 11.5 28.5T640-520Zm-320-80h200v-80H320v80ZM180-120q-34-114-67-227.5T80-580q0-92 64-156t156-64h200q29-38 70.5-59t89.5-21q25 0 42.5 17.5T720-820q0 6-1.5 12t-3.5 11q-4 11-7.5 22.5T702-751l91 91h87v279l-113 37-67 224H480v-80h-80v80H180Zm60-80h80v-80h240v80h80l62-206 98-33v-141h-40L620-720q0-20 2.5-38.5T630-796q-29 8-51 27.5T547-720H300q-58 0-99 41t-41 99q0 98 27 191.5T240-200Zm240-298Z" />
           </svg>
           <div class="text-center">
@@ -55,7 +55,7 @@
       @if (("Catálogo de cuentas contables".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/cuentas-contables']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M200-246q54-53 125.5-83.5T480-360q83 0 154.5 30.5T760-246v-514H200v514Zm280-194q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm69-80h422q-44-39-99.5-59.5T480-280q-56 0-112.5 20.5T269-200Zm211-320q-25 0-42.5-17.5T420-580q0-25 17.5-42.5T480-640q25 0 42.5 17.5T540-580q0 25-17.5 42.5T480-520Zm0 17Z" />
           </svg>
           <div class="text-center">
@@ -68,7 +68,7 @@
       @if (("Catálogo de bancos".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/bancos']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z" />
           </svg>
           <div class="text-center">
@@ -81,7 +81,7 @@
       @if (("Catálogo de ciudades y departamentos".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/ciudades-departamentos']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z" />
           </svg>
           <div class="text-center">
@@ -94,7 +94,7 @@
       @if (("Catálogo de espacios".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/espacios']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M160-200h80v-320h480v320h80v-426L480-754 160-626v426Zm-80 80v-560l400-160 400 160v560H640v-320H320v320H80Zm280 0v-80h80v80h-80Zm80-120v-80h80v80h-80Zm80 120v-80h80v80h-80ZM240-520h480-480Z" />
           </svg>
           <div class="text-center">
@@ -107,7 +107,7 @@
       @if (("Catálogo de unidades".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/unidades']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M160-240q-33 0-56.5-23.5T80-320v-320q0-33 23.5-56.5T160-720h640q33 0 56.5 23.5T880-640v320q0 33-23.5 56.5T800-240H160Zm0-80h640v-320H680v160h-80v-160h-80v160h-80v-160h-80v160h-80v-160H160v320Zm120-160h80-80Zm160 0h80-80Zm160 0h80-80Zm-120 0Z" />
           </svg>
           <div class="text-center">
@@ -120,7 +120,7 @@
       @if (("Catálogo de tipos de contrato".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/tipos-contrato']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
               <path d="M240-80q-50 0-85-35t-35-85v-120h120v-560h600v680q0 50-35 85t-85 35H240Zm480-80q17 0 28.5-11.5T760-200v-600H320v480h360v120q0 17 11.5 28.5T720-160ZM360-600v-80h360v80H360Zm0 120v-80h360v80H360ZM240-160h360v-80H200v40q0 17 11.5 28.5T240-160Zm0 0h-40 400-360Z" />
           </svg>
           <div class="text-center">
@@ -133,7 +133,7 @@
       @if (("Catálogo de modalidades de selección".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/modalidades-seleccion']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
             <path d="M475-160q4 0 8-2t6-4l328-328q12-12 17.5-27t5.5-30q0-16-5.5-30.5T817-607L647-777q-11-12-25.5-17.5T591-800q-15 0-30 5.5T534-777l-11 11 74 75q15 14 22 32t7 38q0 42-28.5 70.5T527-522q-20 0-38.5-7T456-550l-75-74-175 175q-3 3-4.5 6.5T200-435q0 8 6 14.5t14 6.5q4 0 8-2t6-4l136-136 56 56-135 136q-3 3-4.5 6.5T285-350q0 8 6 14t14 6q4 0 8-2t6-4l136-135 56 56-135 136q-3 2-4.5 6t-1.5 8q0 8 6 14t14 6q4 0 7.5-1.5t6.5-4.5l136-135 56 56-136 136q-3 3-4.5 6.5T454-180q0 8 6.5 14t14.5 6Zm-1 80q-37 0-65.5-24.5T375-166q-34-5-57-28t-28-57q-34-5-56.5-28.5T206-336q-38-5-62-33t-24-66q0-20 7.5-38.5T149-506l232-231 131 131q2 3 6 4.5t8 1.5q9 0 15-5.5t6-14.5q0-4-1.5-8t-4.5-6L398-777q-11-12-25.5-17.5T342-800q-15 0-30 5.5T285-777L144-635q-9 9-15 21t-8 24q-2 12 0 24.5t8 23.5l-58 58q-17-23-25-50.5T40-590q2-28 14-54.5T87-692l141-141q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l11 11 11-11q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l169 169q23 23 35 53t12 61q0 31-12 60.5T873-437L545-110q-14 14-32.5 22T474-80Zm-99-560Z" />
           </svg>
           <div class="text-center">
@@ -146,7 +146,7 @@
       @if (("Catálogo de documentación mínima".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
       <button [routerLink]="['/documentacion-minima']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
         <div class="flex flex-col items-center gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#1f1f1f">
             <path d="M280-280h280v-80H280v80Zm0-160h400v-80H280v80Zm0-160h400v-80H280v80Zm-80 480q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
           </svg>
           <div class="text-center">
@@ -354,7 +354,7 @@
       @if (("Tipo de personas".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
         <button [routerLink]="['/tipos-personas']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
           <div class="flex flex-col items-center gap-4">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+            <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
               <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z" />
             </svg>
             <div class="text-center">
@@ -367,7 +367,7 @@
       @if (("Tipos de régimen".toLowerCase()).includes(searchTerm.toLowerCase()) || !searchTerm) {
         <button [routerLink]="['/tipos-regimen']" class="group text-left rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition p-6">
           <div class="flex flex-col items-center gap-4">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#1f1f1f">
               <path d="m576-160-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm79-360L513-662l56-56 85 85 170-170 56 57-225 226ZM80-280v-80h360v80H80Zm0-320v-80h360v80H80Z" />
             </svg>
             <div class="text-center">

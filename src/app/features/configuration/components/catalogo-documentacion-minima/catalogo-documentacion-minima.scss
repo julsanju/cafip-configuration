@@ -1,0 +1,62 @@
+/* Scrollbar fino y sin flechas para celdas con clase scroll-thin */
+.scroll-thin {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #cbd5e1 transparent;
+  /* Para Edge (Legacy) */
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 3px; /* barra más delgada */
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* slate-300 */
+  border-radius: 9999px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Ocultar botones/flechas del scrollbar en webkit */
+.scroll-thin::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Reglas adicionales para Edge/Chromium que a veces ignora el selector genérico */
+.scroll-thin::-webkit-scrollbar-button:single-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scroll-thin::-webkit-scrollbar-button:vertical:increment,
+.scroll-thin::-webkit-scrollbar-button:vertical:decrement,
+.scroll-thin::-webkit-scrollbar-button:horizontal:increment,
+.scroll-thin::-webkit-scrollbar-button:horizontal:decrement {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Selectores extra por compatibilidad (algunos motores antiguos) */
+.scroll-thin::-webkit-scrollbar-button:start:increment,
+.scroll-thin::-webkit-scrollbar-button:start:decrement,
+.scroll-thin::-webkit-scrollbar-button:end:increment,
+.scroll-thin::-webkit-scrollbar-button:end:decrement,
+.scroll-thin::-webkit-scrollbar-button:both:increment,
+.scroll-thin::-webkit-scrollbar-button:both:decrement {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+

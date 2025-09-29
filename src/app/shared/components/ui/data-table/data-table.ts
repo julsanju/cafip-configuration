@@ -7,7 +7,8 @@ import { TableColumn } from './models/table-column';
   selector: 'app-data-table',
   imports: [CommonModule, FormsModule],
   standalone: true,
-  templateUrl: './data-table.html'
+  templateUrl: './data-table.html',
+  styleUrls: ['./data-table.scss']
 })
 export class DataTableComponent {
   @Input() columns: TableColumn[] = [];
@@ -15,6 +16,8 @@ export class DataTableComponent {
   @Input() canEditKey: string = 'canEdit';
   @Input() canDeleteKey: string = 'canDelete';
   @Input() itemsPerPage: number = 10;
+  @Input() scrollableKeys: string[] = []; // keys de columnas con scroll
+  @Input() hideScrollbar: boolean = false; // oculta barra (incluye flechas) conservando scroll
   @Input() pageSizes: number[] = [4, 8, 12];
   @Output() edit = new EventEmitter<any>();
   @Output() remove = new EventEmitter<any>();
