@@ -1,0 +1,68 @@
+<div class="bg-white rounded-xl shadow p-4 w-full">
+  
+  <!-- Encabezado -->
+  <div class="grid text-xl font-semibold text-black bg-purple-50 px-4 py-3 rounded-lg mb-3" [ngStyle]="{ 'grid-template-columns': 'repeat(' + (columns.length + 1) + ', minmax(0, 1fr))' }">
+      @for (col of columns; track col.key) {
+        <div>{{ col.label }}</div>
+      }
+      <div class="text-right pr-2">Acciones</div>
+    </div>
+  
+  <!-- Filas tipo "card" -->
+  <div class="flex flex-col gap-2">
+      @for (row of paginatedData; track row) {
+      <div class="grid items-center px-4 py-3 border border-black rounded-xl text-sm text-gray-700" [ngStyle]="{ 'grid-template-columns': 'repeat(' + (columns.length + 1) + ', minmax(0, 1fr))' }">
+          @for (col of columns; track col.key) {
+            <div>{{ row[col.key] }}</div>
+          }
+          <div class="flex items-center gap-3 justify-end pr-2">
+            <button class="text-blue-600 hover:text-blue-700" 
+              (click)="onEdit(row)" 
+              [disabled]="!row[canEditKey]"
+              [class.opacity-40]="!row[canEditKey]">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+            </button>
+            <button class="text-red-600 hover:text-red-700" 
+              (click)="onRemove(row)" 
+              [disabled]="!row[canDeleteKey]"
+              [class.opacity-40]="!row[canDeleteKey]">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  
+    <!-- Paginación -->
+    <div class="flex justify-between items-center mt-4 text-sm text-black bg-purple-50 px-4 py-3 rounded-lg">
+      @if (data.length > 0) {
+        <span>
+          Mostrando
+          {{ (currentPage - 1) * itemsPerPage + 1 }}
+          a
+          {{ Math.min(currentPage * itemsPerPage, data.length) }}
+          de {{ data.length }} resultados
+        </span>
+      } @else {
+        <span>Sin resultados</span>
+      }
+      <div class="flex items-center gap-2">
+        <label class="text-sm">{{ itemsPerPage }} por página</label>
+        <select class="border rounded px-2 py-1 text-sm" [ngModel]="itemsPerPage" (ngModelChange)="onItemsPerPageChange($event)">
+          @for (size of pageSizes; track size) {
+            <option [ngValue]="size">{{ size }}</option>
+          }
+        </select>
+        <button (click)="goToFirstPage()" [disabled]="currentPage === 1"
+          class="px-2 py-1 border rounded disabled:opacity-50">&lt;&lt;</button>
+        <button (click)="prevPage()" [disabled]="currentPage === 1"
+          class="px-2 py-1 border rounded disabled:opacity-50">&lt;</button>
+        <span class="px-2 py-1 border rounded bg-blue-100">{{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages()"
+          class="px-2 py-1 border rounded disabled:opacity-50">&gt;</button>
+        <button (click)="goToLastPage()" [disabled]="currentPage === totalPages()"
+          class="px-2 py-1 border rounded disabled:opacity-50">&gt;&gt;</button>
+      </div>
+    </div>
+  </div>
+  

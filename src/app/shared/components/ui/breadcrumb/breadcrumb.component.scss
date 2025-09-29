@@ -1,0 +1,42 @@
+:host{
+  display:block;
+  width:100%;
+  margin-top: 1.5rem; /* separación del techo */
+}
+
+a{
+  text-decoration: none;
+}
+
+.breadcrumb{
+  font-size: 2rem; /* text-4xl aprox */
+  line-height: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+.breadcrumb .root{
+  font-weight: 800;
+  color: #9ca3af; /* gray-400 default (deshabilitado) */
+}
+.breadcrumb .root:hover{
+  color: #6b7280; /* gray-500 on hover */
+}
+.breadcrumb .root.active{
+  color: #3b82f6; /* blue-500 when active */
+}
+.breadcrumb .sep{
+  margin: 0;
+  color: #d1d5db; /* gray-300 */
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+.breadcrumb .current{
+  font-weight: 800;
+  color: #111827; /* gray-900 */
+}
+
+

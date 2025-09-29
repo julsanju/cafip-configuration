@@ -1,0 +1,11 @@
+@if (currentLabel()) {
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <nav class="breadcrumb">
+    <a [routerLink]="['/configuracion']" routerLinkActive="active" class="root">Configuración</a>
+    <span class="sep">&gt;</span>
+    <span class="current">{{ currentLabel() }}</span>
+  </nav>
+</div>
+}
+
+

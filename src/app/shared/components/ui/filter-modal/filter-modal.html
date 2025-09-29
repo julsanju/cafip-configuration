@@ -1,0 +1,97 @@
+@if (isOpen) {
+<div class="absolute top-full right-0 mt-2 z-50 w-96">
+  <!-- Triángulo -->
+  <div class="absolute -top-2 right-8 w-4 h-4 bg-white border-t border-l border-blue-400 rotate-45"></div>
+
+  <!-- Contenedor -->
+  <div class="border border-blue-400 rounded-xl p-4 shadow-lg bg-white">
+    <!-- Filtros -->
+    <form [formGroup]="filterForm" (ngSubmit)="onApply()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @for (field of config.fields; track field.key) {
+        <div>
+          <label class="block text-sm font-semibold text-gray-800">{{ field.label }}</label>
+          
+          <!-- Text input -->
+          @if (field.type === 'text') {
+          <input
+            type="search"
+            [placeholder]="field.placeholder || `Buscar por ${field.label.toLowerCase()}...`"
+            [formControlName]="field.key"
+            class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+          />
+          }
+
+          <!-- Number input -->
+          @if (field.type === 'number') {
+          <input
+            type="number"
+            [placeholder]="field.placeholder || `Buscar por ${field.label.toLowerCase()}...`"
+            [formControlName]="field.key"
+            class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+          />
+          }
+
+          <!-- Date input -->
+          @if (field.type === 'date') {
+          <input
+            type="date"
+            [formControlName]="field.key"
+            class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+          />
+          }
+
+          <!-- Select input -->
+          @if (field.type === 'select') {
+          <select
+            [formControlName]="field.key"
+            class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+          >
+            <option value="">Seleccionar {{ field.label.toLowerCase() }}</option>
+            @for (option of field.options; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between mt-4">
+        <!-- Limpiar -->
+        @if (config.showReset) {
+        <button 
+          type="button" 
+          (click)="onReset()" 
+          class="text-sm text-blue-600 hover:underline"
+        >
+          Limpiar
+        </button>
+        }
+
+        <!-- Botones -->
+        <div class="flex space-x-2">
+          @if (config.showCancel) {
+          <button 
+            type="button" 
+            (click)="onClose()"
+            class="px-4 py-1 text-sm rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50"
+          >
+            Cancelar
+          </button>
+          }
+          @if (config.showApply) {
+          <button 
+            type="submit" 
+            class="px-4 py-1 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+          >
+            Aplicar
+          </button>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+}

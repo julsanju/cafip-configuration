@@ -1,10 +1,10 @@
-<div class="catalogo-bienes-servicios__container max-w-[78rem] mx-auto px-4 sm:px-6">
+<div class="catalogo-entidad__container max-w-7xl mx-auto">
   <!-- Buscador y botones -->
   <div class="flex justify-between items-center mb-4">
     <div class="relative">
       <input
         type="text"
-        placeholder="Buscar bien o servicio"
+        placeholder="Buscar una entidad"
         [(ngModel)]="searchTerm"
         (input)="onSearch()"
         class="pl-8 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-200"
@@ -57,6 +57,8 @@
           @for (field of filterConfig.fields; track field.key) {
           <div>
             <label class="block text-sm font-semibold text-gray-800 mb-2">{{ field.label }}</label>
+            
+            <!-- Text input -->
             @if (field.type === 'text') {
             <input
               type="search"
@@ -65,6 +67,8 @@
               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
             />
             }
+
+            <!-- Number input -->
             @if (field.type === 'number') {
             <input
               type="number"
@@ -73,6 +77,17 @@
               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
             />
             }
+
+            <!-- Date input -->
+            @if (field.type === 'date') {
+            <input
+              type="date"
+              [formControlName]="field.key"
+              class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+            />
+            }
+
+            <!-- Select input -->
             @if (field.type === 'select') {
             <select
               [formControlName]="field.key"
@@ -90,11 +105,31 @@
 
         <!-- Footer -->
         <div class="flex items-center justify-between mt-6">
-          <button type="button" (click)="onResetFilter()" class="text-sm text-blue-600 hover:underline">Limpiar</button>
-          <div class="flex space-x-3">
-            <button type="button" (click)="toggleFilter()" class="px-5 py-1.5 text-sm rounded-xl border border-blue-400 text-blue-600 hover:bg-blue-50">Cancelar</button>
-            <button type="submit" class="px-5 py-1.5 text-sm rounded-xl bg-blue-600 text-white hover:bg-blue-700">Aplicar</button>
-          </div>
+          <!-- Limpiar -->
+          <button 
+            type="button" 
+            (click)="onResetFilter()" 
+            class="text-sm text-blue-600 hover:underline"
+          >
+            Limpiar
+          </button>
+
+            <!-- Botones -->
+            <div class="flex space-x-3">
+              <button 
+                type="button" 
+                (click)="toggleFilter()"
+                class="px-5 py-1.5 text-sm rounded-xl border border-blue-400 text-blue-600 hover:bg-blue-50"
+              >
+                Cancelar
+              </button>
+              <button 
+                type="submit" 
+                class="px-5 py-1.5 text-sm rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Aplicar
+              </button>
+            </div>
         </div>
       </form>
     </div>
@@ -103,7 +138,7 @@
 
   <app-data-table 
     [columns]="columns" 
-    [data]="filteredItems"
+    [data]="filteredEntidades"
     [itemsPerPage]="4"
     (edit)="onEdit($event)"
     (remove)="onRemove($event)">

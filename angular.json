@@ -24,6 +24,7 @@
 						"outputPath": "dist/cafip-configuration",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
+						"polyfills": [],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
 						"assets": [
@@ -33,12 +34,9 @@
 								"output": "."
 							}
 						],
-						"styles": [
-							"src/styles.scss"
-						],
-						"polyfills": [
-							"zone.js"
-						]
+                        "styles": [
+                            "src/styles.scss"
+                        ]
 					},
 					"configurations": {
 						"production": {

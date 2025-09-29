@@ -1,0 +1,127 @@
+@if (isOpen) {
+<!-- Backdrop -->
+<div class="fixed inset-0 z-50">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-60" (click)="close()"></div>
+
+  <!-- Modal -->
+  <div class="fixed inset-0 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="bg-white rounded-2xl border-2 border-blue-200 shadow-md w-full max-w-3xl animate-fadeIn">
+
+      <!-- Header -->
+      <div class="flex items-center px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
+        <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+        <h3 class="text-blue-700 font-semibold text-lg sm:text-xl">{{ title }}</h3>
+      </div>
+      @if (description) {
+      <div class="px-4 sm:px-6 lg:px-8 mt-2">
+        <p class="text-sm text-gray-500">{{ description }}</p>
+      </div>
+      }
+
+      <!-- Body horizontal -->
+      <div class="px-4 sm:px-6 lg:px-8 mt-3 pb-4 sm:pb-6 lg:pb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+          <form [formGroup]="form" (ngSubmit)="submitForm()" class="contents">
+            @for (field of fields; track field.name) {
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+
+              <!-- Input: text / number / email / password -->
+              @if (['text','number','email','password'].includes(field.type || 'text')) {
+              <div>
+                <input
+                  [type]="field.type || 'text'"
+                  [formControlName]="field.name"
+                  [placeholder]="field.placeholder"
+                  class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300"
+                  [ngClass]="{ 'border-red-400': form.get(field.name)?.invalid && form.get(field.name)?.touched, 'border-blue-300': !form.get(field.name)?.invalid || !form.get(field.name)?.touched }"
+                />
+                @if (form.get(field.name)?.invalid && form.get(field.name)?.touched) {
+                <p class="text-red-500 text-xs mt-1">Campo inválido</p>
+                }
+              </div>
+              }
+
+              <!-- Textarea -->
+              @if (field.type === 'textarea') {
+              <textarea
+                [formControlName]="field.name"
+                [placeholder]="field.placeholder"
+                class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300"
+              ></textarea>
+              }
+
+              <!-- Select -->
+              @if (field.type === 'select') {
+              <select
+                [formControlName]="field.name"
+                class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300"
+              >
+                @for (opt of field.options; track opt.value) {
+                <option [value]="opt.value">{{ opt.label }}</option>
+                }
+              </select>
+              }
+
+              <!-- Searchable Select -->
+              @if (field.type === 'searchable-select') {
+              <div class="relative">
+                <input
+                  type="text"
+                  [placeholder]="field.placeholder || 'Buscar...'"
+                  [value]="searchTerms[field.name]"
+                  (input)="onSearchableSelectSearch(field.name, $event.target.value)"
+                  (focus)="onSearchableSelectFocus(field.name)"
+                  (blur)="onSearchableSelectBlur(field.name)"
+                  class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300"
+                  [ngClass]="{ 'border-red-400': form.get(field.name)?.invalid && form.get(field.name)?.touched, 'border-blue-300': !form.get(field.name)?.invalid || !form.get(field.name)?.touched }"
+                />
+                @if (showDropdown[field.name] && filteredOptions[field.name].length) {
+                <div class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  @for (option of filteredOptions[field.name]; track option.value) {
+                  <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm" (mousedown)="onSearchableSelectSelect(field.name, option)">
+                    {{ option.label }}
+                  </div>
+                  }
+                </div>
+                }
+                @if (form.get(field.name)?.invalid && form.get(field.name)?.touched) {
+                <p class="text-red-500 text-xs mt-1">Campo requerido</p>
+                }
+              </div>
+              }
+
+              <!-- Checkbox -->
+              @if (field.type === 'checkbox') {
+              <div class="flex items-center gap-2">
+                <input type="checkbox" [formControlName]="field.name" class="h-4 w-4 rounded border-gray-300 focus:ring-blue-500" />
+                <span class="text-sm text-gray-700">{{ field.placeholder }}</span>
+              </div>
+              }
+
+              <!-- Date -->
+              @if (field.type === 'date') {
+              <input type="date" [formControlName]="field.name" class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300" />
+              }
+
+              <!-- File -->
+              @if (field.type === 'file') {
+              <input type="file" (change)="handleFileChange($event, field.name)" class="w-full px-4 py-3 rounded-xl text-sm border-2 bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-300" />
+              }
+            </div>
+            }
+
+            <!-- Footer dentro de la grilla, ancho completo -->
+            <div class="md:col-span-2 xl:col-span-3 flex justify-end gap-2 pt-2">
+              <button type="button" class="px-4 py-2 rounded-xl border border-blue-300 text-blue-700 hover:bg-blue-50" (click)="close()">Cancelar</button>
+              <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700" [disabled]="form.invalid">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
